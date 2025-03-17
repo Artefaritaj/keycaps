@@ -7,7 +7,7 @@
 
 include <./includes.scad>
 
-max_row = 7; // Maximum row width (in units)
+max_row = 4; // Maximum row width (in units)
 
 // Each key is defined as [label, size]
 keys = [
@@ -19,34 +19,34 @@ keys = [
   ["È", 1],
   ["^", 1],
   ["V", 1],
-  ["D", 1],
-  ["L", 1],
-  ["J", 1],
-  ["Z", 1],
-  
-  // Home row of Bépo letters
-  ["A", 1],
-  ["U", 1],
-  ["I", 1],
-  ["E", 1],
-  ["'", 1],
-  ["C", 1],
-  ["T", 1],
-  ["S", 1],
-  ["R", 1],
-  ["N", 1],
-  
-  // Bottom row of Bépo letters
-  ["Q", 1],
-  ["W", 1],
-  ["F", 1],
-  ["H", 1],
-  ["M", 1],
-  ["?", 1],
-  [".", 1],
-  ["K", 1],
-  ["X", 1],
-  ["Y", 1],
+//  ["D", 1],
+//  ["L", 1],
+//  ["J", 1],
+//  ["Z", 1],
+//  
+//  // Home row of Bépo letters
+//  ["A", 1],
+//  ["U", 1],
+//  ["I", 1],
+//  ["E", 1],
+//  ["'", 1],
+//  ["C", 1],
+//  ["T", 1],
+//  ["S", 1],
+//  ["R", 1],
+//  ["N", 1],
+//  
+//  // Bottom row of Bépo letters
+//  ["Q", 1],
+//  ["W", 1],
+//  ["F", 1],
+//  ["H", 1],
+//  ["M", 1],
+//  ["?", 1],
+//  [".", 1],
+//  ["K", 1],
+//  ["X", 1],
+//  ["Y", 1],
   
   // Unicode keys
   ["\U0f0311", 1],
@@ -65,13 +65,13 @@ render_legend_or_keycap = false;  // Set to false to swap the order
 // Module for rendering legend (debug call first)
 module render_legend() {
   debug() key(true);
-  dished() { legend($inset_legend_depth); }
+  dished() { legends($inset_legend_depth); }
 }
 
 // Module for rendering keycap (debug call second)
 module render_keycap() {
   key(true);
-  debug() dished() { legend($inset_legend_depth); }
+  debug() dished() { legends($inset_legend_depth); }
 }
 
 // Compute a vector that contains the cumulative x positions as if all keys were on one line.
