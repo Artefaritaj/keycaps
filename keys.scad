@@ -7,14 +7,31 @@
 
 include <./includes.scad>
 
+legends = ["B", "É", "P", "O", "È", "^", "V", "D", "L", "J", "Z", "A", "U", "I", "E", ","];
+ 
 
-// example key
-dcs_row(5) legend("⇪", size=9) key();
+// Define the boolean variable for swapping
+render_legend_or_keycap = false;  // Set to false to swap the order
 
-// example row
-/* for (x = [0:1:4]) {
-  translate_u(0,-x) dcs_row(x) key();
-} */
+// Module for rendering legend (debug call first)
+module render_legend() {
+  debug() key(true);
+  dished() { legends($inset_legend_depth); }
+}
 
-// example layout
-/* preonic_default("dcs") key(); */
+// Module for rendering keycap (debug call second)
+module render_keycap() {
+  key(true);
+  debug() dished() { legends($inset_legend_depth); }
+}
+
+for (x = [0:1:3]) {
+  for (y = [0:1:3]) {
+    rounded_cherry(0.45) tined_stem_support() translate_u(x,y) legend(legends[y*4+x]) dsa_row() {
+      if (render_legend_or_keycap)
+         render_legend();
+      else
+         render_keycap();
+    }
+  }
+}
