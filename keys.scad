@@ -7,8 +7,9 @@
 
 include <./includes.scad>
 
-legends = ["B", "É", "P", "O", "È", "^", "V", "D", "L", "J", "Z", "A", "U", "I", "E", ","];
+legends = ["B", "É", "P", "O", "È", "^", "V", "D", "L", "J", "Z", "\U0f0311", "\U0f1969", "\U0f05e8", "", "\U0f006e"];
  
+$font="monaspaceargon-regular";
 
 // Define the boolean variable for swapping
 render_legend_or_keycap = false;  // Set to false to swap the order
