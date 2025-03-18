@@ -7,54 +7,110 @@
 
 include <./includes.scad>
 
-max_row = 4; // Maximum row width (in units)
+max_row = 10; // Maximum row width (in units)
 
 // Each key is defined as [label, size]
 keys = [
-  // Top row of Bépo letters
-  ["B", 1],
-  ["É", 1],
-  ["P", 1],
-//  ["O", 1],
-//  ["È", 1],
-//  ["^", 1],
-//  ["V", 1],
-//  ["D", 1],
-//  ["L", 1],
-//  ["J", 1],
-//  ["Z", 1],
-//  
-//  // Home row of Bépo letters
-//  ["A", 1],
-//  ["U", 1],
-//  ["I", 1],
-//  ["E", 1],
-//  ["'", 1],
-//  ["C", 1],
-//  ["T", 1],
-//  ["S", 1],
-//  ["R", 1],
-//  ["N", 1],
-//  
-//  // Bottom row of Bépo letters
-//  ["Q", 1],
-//  ["W", 1],
-//  ["F", 1],
-//  ["H", 1],
-//  ["M", 1],
-//  ["?", 1],
-//  [".", 1],
-//  ["K", 1],
-//  ["X", 1],
-//  ["Y", 1],
+  // FXX
+  ["F1", 1, 4],
+  ["F2", 1, 4],
+  ["F3", 1, 4],
+  ["F4", 1, 4],
+  ["F5", 1, 4],
+  ["F6", 1, 4],
+  ["F7", 1, 4],
+  ["F8", 1, 4],
+  ["F9", 1, 4],
+  ["F10", 1, 4],
+  ["F11", 1, 4],
+  ["F12", 1, 4],
   
-  // Unicode keys
-  ["\U0f0311", 1],
-  ["\U0f1969", 1.5],
-  ["\U0f05e8", 1.5],
-  ["", 1.5],
-//  ["\U0f006e", 1.5]
+  //Number row
+  
+  ["$", 1, 6],
+  ["\"", 1, 6],
+  ["«", 1, 6],
+  ["»", 1, 6],
+  ["(", 1, 6],
+  [")", 1, 6],
+  ["@", 1, 6],
+  ["+", 1, 6],
+  ["-", 1, 6],
+  ["/", 1, 6],
+  ["*", 1, 6],
+  ["=", 1, 6],
+  ["%", 1, 6],
+
+  // Top row of Bépo letters
+  ["B", 1, 6],
+  ["É", 1, 6],
+  ["P", 1, 6],
+  ["O", 1, 6],
+  ["È", 1, 6],
+  ["^", 1, 6],
+  ["V", 1, 6],
+  ["D", 1, 6],
+  ["L", 1, 6],
+  ["J", 1, 6],
+  ["Z", 1, 6],
+  ["W", 1, 6],
+  
+  // Home row of Bépo letters
+  ["A", 1, 6],
+  ["U", 1, 6],
+  ["I", 1, 6],
+  ["E", 1, 6],
+  [",", 1, 6],
+  ["C", 1, 6],
+  ["T", 1, 6],
+  ["S", 1, 6],
+  ["R", 1, 6],
+  ["N", 1, 6],
+  ["M", 1, 6],
+  
+  // Bottom row of Bépo letters
+  ["Ê", 1, 6],
+  ["À", 1, 6],
+  ["Q", 1, 6],
+  ["Y", 1, 6],
+  ["X", 1, 6],
+  [".", 1, 6],
+  
+  ["K", 1, 6],
+  ["'", 1, 6],
+  ["Q", 1, 6],
+  ["G", 1, 6],
+  ["H", 1, 6],
+  ["F", 1, 6],
+  ["Ç", 1, 6],
+  
+  // Others,
+  ["\U0f0328", 1, 6],
+  ["", 1, 6], //blank
+  
+  // Thumbs
+  
+  //left
+  ["\U0f0206", 1.5, 8], // escape
+  ["\U0f02dc", 1.5, 8], //home
+  
+  ["\U0f1050", 1, 8], //space
+  ["\U0f0636", 1, 8], //shift
+  ["Alt", 1, 4], 
+  ["Ctr", 1, 4], 
+  
+  //right
+  ["\U0f01b4", 1.5, 7], // delete
+  ["\U0f006e", 1.5, 8], // back
+  
+  ["\U0f0311", 1, 8], // enter
+  ["\U0f0636", 1, 8], //shift
+  
+  ["Alt", 1, 4], 
+  ["Ctr", 1, 4], 
+
 ];
+
 
 
 $font = "monaspaceargon-regular";
@@ -64,7 +120,7 @@ $stem_inner_slop = 0.05;
 $cherry_bevel = true;
 
 // Define the boolean variable for swapping
-render_legend_or_keycap = true;  // Set to false to swap the order
+render_legend_or_keycap = false;  // Set to false to swap the order
 
 // Module for rendering legend (debug call first)
 module render_legend() {
@@ -90,9 +146,10 @@ for (i = [0 : len(keys)-1]) {
     y = floor(linear_x[i] / max_row);
     key_label = keys[i][0];
     key_size  = keys[i][1];
+    font_size = keys[i][2];
     
     rounded_cherry(0) no_stem_support() translate_u(x, y)
-    u(key_size) legend(key_label) dsa_row() dishless() {
+    u(key_size) legend(key_label, size=font_size)  dsa_row() dishless() {
       if (render_legend_or_keycap)
          render_legend();
       else
