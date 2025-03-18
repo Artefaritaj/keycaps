@@ -58,6 +58,7 @@ keys = [
 
 
 $font = "monaspaceargon-regular";
+$rounded_cherry_stem_d = 6.5;
 
 // Define the boolean variable for swapping
 render_legend_or_keycap = false;  // Set to false to swap the order
@@ -87,8 +88,8 @@ for (i = [0 : len(keys)-1]) {
     key_label = keys[i][0];
     key_size  = keys[i][1];
     
-    rounded_cherry(0.45) tined_stem_support() translate_u(x, y)
-    u(key_size) legend(key_label) dsa_row() {
+    rounded_cherry(0.4) no_stem_support() translate_u(x, y)
+    u(key_size) legend(key_label) dsa_row() dishless() {
       if (render_legend_or_keycap)
          render_legend();
       else
