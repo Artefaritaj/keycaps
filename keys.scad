@@ -15,10 +15,10 @@ keys = [
   ["B", 1],
   ["É", 1],
   ["P", 1],
-  ["O", 1],
-  ["È", 1],
-  ["^", 1],
-  ["V", 1],
+//  ["O", 1],
+//  ["È", 1],
+//  ["^", 1],
+//  ["V", 1],
 //  ["D", 1],
 //  ["L", 1],
 //  ["J", 1],
@@ -53,15 +53,18 @@ keys = [
   ["\U0f1969", 1.5],
   ["\U0f05e8", 1.5],
   ["", 1.5],
-  ["\U0f006e", 1.5]
+//  ["\U0f006e", 1.5]
 ];
 
 
 $font = "monaspaceargon-regular";
-$rounded_cherry_stem_d = 6.5;
+$rounded_cherry_stem_d = 5.5;
+$inset_legend_depth = 0.3;
+$stem_inner_slop = 0.05;
+$cherry_bevel = true;
 
 // Define the boolean variable for swapping
-render_legend_or_keycap = false;  // Set to false to swap the order
+render_legend_or_keycap = true;  // Set to false to swap the order
 
 // Module for rendering legend (debug call first)
 module render_legend() {
@@ -88,7 +91,7 @@ for (i = [0 : len(keys)-1]) {
     key_label = keys[i][0];
     key_size  = keys[i][1];
     
-    rounded_cherry(0.4) no_stem_support() translate_u(x, y)
+    rounded_cherry(0) no_stem_support() translate_u(x, y)
     u(key_size) legend(key_label) dsa_row() dishless() {
       if (render_legend_or_keycap)
          render_legend();
