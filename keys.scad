@@ -42,6 +42,7 @@ keys = [
   ["%", 1, 6],
 
   // Top row of Bépo letters
+  ["\U0f0312", 1, 6],
   ["B", 1, 6],
   ["É", 1, 6],
   ["P", 1, 6],
@@ -72,7 +73,6 @@ keys = [
 //  // Bottom row of Bépo letters
 //  ["Ê", 1, 6],
 //  ["À", 1, 6],
-//  ["Q", 1, 6],
 //  ["Y", 1, 6],
 //  ["X", 1, 6],
 //  [".", 1, 6],
@@ -121,7 +121,7 @@ $stem_inner_slop = 0.05;
 $cherry_bevel = true;
 
 // Define the boolean variable for swapping
-render_legend_or_keycap = false;  // Set to false to swap the order
+render_legend_or_keycap = true;  // Set to false to swap the order
 
 // Module for rendering legend (debug call first)
 module render_legend() {
